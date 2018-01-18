@@ -1,18 +1,21 @@
-from tkinter import messagebox
-from tkinter import *
-from tkinter import ttk,filedialog
+#for importing library 
+from tkinter import messagebox              #for using messagbox in tkinter
+from tkinter import *                       #importing tkinter library
+from tkinter import ttk,filedialog         
 global x
 x='£'
+#Main class declared
 class Main:
+    #importing self made files 
     from handler.FormattedData import FormatData
     from handler.record import Record
     from handler.hireRecord import hRecord
     
-
+#This method is used for validating 
     def validate(self):
         self.count = 0
         self.RealData = ["timepass yes","timepass yes","lalit nothing","kap frn","lalit nothing"]
-        self.RealData = self.FormatData.ReadData("handler/database.csv")
+        self.RealData = self.FormatData.ReadData("handler/database.csv") #this is for reading data from saved database
         self.log_user = str(self.raw_user.get())
         self.log_password = str(self.raw_pass.get())
         if (len(self.log_user)!=0) and (len(self.log_password) != 0):
@@ -30,20 +33,19 @@ class Main:
             messagebox.showinfo("Error","You must fill all the feilds.")
             self.loginn()
         
-
-                    
+#---------------------------------------------------------------------------------------------      
             
-                
+              
             
         
-
+#This method is used for login window
     def loginn(self):
-        #for login function
+        # for deafult geometry, background, title and the window
         self.root.destroy()
         self.root=Tk()#create a blank window
         self.root.geometry('1080x675+0+0')
         self.root.resizable(False,False)
-        self.Can = Canvas(self.root)
+        self.Can = Canvas(self.root)            #for Image background
         self.filename = PhotoImage(file="back.png",width = 1080, height=675)
         self.background_label = Label(self.root, image=self.filename)
         self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
@@ -52,7 +54,8 @@ class Main:
         self.root.title("LOGIN")
         self.frame=Frame(self.root)
         self.frame.pack(pady=120)
-        
+   #---------------------------------------------------------------------------------------
+        #User entry and Labels
         self.userL=Label(self.root,text="Username",font=('Courier',30))
         self.userL.pack(pady=10)
         self.raw_user = StringVar()
@@ -68,8 +71,9 @@ class Main:
         #login.config(command= on)
         self.Can.pack()
         self.root.mainloop()
-
-
+        
+#---------------------------------------------------------------------------------------
+#this is for saving username and password of the user
     def saveData(self):
         self.username = str(self.raw_username.get())
         self.password = str(self.raw_password.get())
@@ -82,11 +86,11 @@ class Main:
             print(self.username,self.password,"this is cool")
             messagebox.showinfo("Error","You must fill all the feilds.")
             self.register()
-        
-
-        
+ #-------------------------------------------------------------------------------------------------
+#This method is used for registring account of the user and owner
     def register(self):
         #to register account
+        # for deafult geometry, background, title and the window
         self.root.destroy()
         global root
         self.root=Tk()
@@ -99,7 +103,7 @@ class Main:
         self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
         self.Back=ttk.Button(self.root,text="BACK",command= self.s)
         self.Back.place(x=0,y=0)
-
+        
         self.title=Label(self.root,text="Sign up Portal")
         self.title.pack()
         
@@ -110,51 +114,55 @@ class Main:
         self.bgimg = PhotoImage(file="fb.png")
         self.imglab = Label(self.frame1, image=self.bgimg)
         self.imglab.place(x=0, y=0, relwidth=1, relheight=1)
-        self.nameL=Label(self.frame1,text="First Name:",font=("Currior",15))
+ #-------------------------------------------------------------------------------------
+ #User information to be filled in the form
+    #name of the user
+        self.nameL=Label(self.frame1,text="First Name:",font=("Currior",15)) 
         self.nameL.place(x=0,y=20)
         self.name = Entry(self.frame1,font=("Currior",13)).place(x=200,y=20)
-       
+     #last name of the user
         self.lastL=Label(self.frame1,text="Last Name:",font=("Currior",15)).place(x=0,y=60)
         self.last = Entry(self.frame1,font=("Currior",13)).place(x=200,y=60)
-
+     #Phone number of the user
         self.phoneL = Label(self.frame1,text="Phone no:",font=("Currior",15))
         self.phoneL.place(x=0,y=100)
         self.phone=Entry(self.frame1,font=("Currior",13))
         self.phone.place(x=200,y=100)
-
+#username of the user
         self.usernameL=Label(self.frame1,text="Username:",font=("Currior",15))
         self.usernameL.place(x=0,y=140)
         self.raw_username  = StringVar()
         self.username=Entry(self.frame1,font=("Currior",13),textvariable=self.raw_username).place(x=200,y=140)
         
-
+#password of the user
         self.passwordL=Label(self.frame1,text="Password:",font=("Currior",15))
         self.passwordL.place(x=0,y=180)
         self.raw_password = StringVar() 
         self.Password=Entry(self.frame1,font=("Currior",13),show='*',textvariable=self.raw_password).place(x=200,y=180)
         
-
+#Email of the user
 
         self.EmailL=Label(self.frame1,text="Email:",font=("Currior",15))
         self.EmailL.place(x=0,y=220)
         self.Email = Entry(self.frame1,font=("Currior",13)).place(x=200,y=220)
-
+#Gender of the user
 
         self.genderL=Label(self.frame1,text="Gender",font=("Currior",15))
         self.genderL.place(x=0,y=260)
-        
+  
         ttk.Radiobutton(self.frame1,text="Female",value=1).place(x=300,y=260)
         ttk.Radiobutton(self.frame1,text="Male", value=0).place(x=200,y=260)
 
-        
+  #Submission of the information      
         self.registerr=ttk.Button(self.frame1,text="REGISTER",command=self.saveData)
         self.registerr.place(x=100,y=320)
         self.fcan.pack()
         self.Can.pack()
         self.root.mainloop()
         
-
+#Constructor for the welcome window
     def __init__(self):
+        # for deafult geometry, background, title and the window
         self.root= Tk()
         self.c=0
         self.frame=Frame(self.root,bg="blue").pack(fill=BOTH)
@@ -167,36 +175,46 @@ class Main:
         self.filename = PhotoImage(file="sp.png",width = 1080, height=675)
         self.background_label = Label(self.root, image=self.filename)
         self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        #-------------------------------------------------------------------------------
         
         self.frame2=Frame(self.root)
         self.frame2.pack()
         self.signin=ttk.Button(self.root,text='SIGN UP')
         self.signin.pack(side=LEFT,padx=200)
-          #Two lines of below
+          #for background image in signup button
         img1 = PhotoImage(file="butup2.png")
         self.signin.config(image=img1)
         self.login=ttk.Button(self.root,text='LOGIN')
         self.login.pack(side=RIGHT,padx=200)
-        #below two of below
+      #for background image in signin buttom
         img2 = PhotoImage(file="butin2.png")
         self.login.config(image=img2)
         self.signin.config(command=self.register)
         self.login.config(command=self.loginn)
         self.Can.pack()
         self.root.mainloop()
+    #for destroying current window and retrive to Dicission class
     def g(self):
         self.root.destroy()
         Decission()
+    #------------------------------------------
+    #for destroying current window and retrive to Main class
     def s(self):
         self.root.destroy()
         Main()
+        
+   #For Decission class 
 class Decission:
+    #Import file and classes for file handling
     from handler.insurancefile import insurance
     from handler.hireRecord import hRecord
     from handler.insurancefile import insurance
+    #---------------------------------------------
     
     def __init__(self):
-        self.insurance().write("Booking Available")
+        #------------------------------------------------------------------
+        self.insurance().write("Booking Available")     #for resetting the availablity of the tools
+        # for deafult geometry, background, title and the window
         self.root=Tk()#create a blank window
         self.root.geometry('1080x675+0+0')
         self.root.resizable(False,False)
@@ -207,6 +225,8 @@ class Decission:
         self.Back=ttk.Button(self.root,text="LOG OUT",command= self.c)
         self.Back.place(x=0,y=0)
         self.root.title('Decission')
+        #---------------------------------------------------------------------------------------------------
+        #for for the labels
         Label(self.root,text="Now you have to choose are you Owner or User").pack(pady=(110,0))
         Label(self.root,text="Select Owner if you have to lend the tool and User if you have to use the tool from other").pack()
         self.frame2=Frame(self.root)
@@ -217,22 +237,30 @@ class Decission:
         self.user.pack(pady=80)
         self.Can.pack()
         self.root.mainloop()
+    #Methods for destroy root and redirecting to the Owner class
     def a(self):
         self.root.destroy()
         Owner()
+   #--------------------------------------------------------------
+    #Method for destroy root and redirecting to the user class
     def b(self):
         self.root.destroy()
         User()
+   #--------------------------------------------------------------------
+    #Method for destroying and redirecting to the welcome login page
     def c(self):
         self.root.destroy()
         Main()
-        
+   #------------------------------------------------------------
+#Owner class decleared
 class Owner:
+   #for importing ownfile for file handing
     from handler.record import Record
     from handler.hireRecord import hRecord
     from handler.record import Record
-    
+   #---------------------------------------------------------
     def __init__(self):
+        # for deafult geometry, background, title and the window
         self.root=Tk()#create a blank window
         self.root.geometry('1080x675+0+0')
         self.root.resizable(False,False)
@@ -240,12 +268,15 @@ class Owner:
         self.filename = PhotoImage(file="back.png",width = 1080, height=675)
         self.background_label = Label(self.root, image=self.filename)
         self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
+   #for the back button
         self.Back=ttk.Button(self.root,text="BACK",command= self.c)
         self.Back.place(x=0,y=0)
+   #------------------------------------------------------------------------------------------
+    #For the bars Menu of the wind
         Label(self.root,text="You are the Owner of the tools",font=('Courier',30)).pack(pady=(200,0))
         self.mb = Menu(self.root)
         self.root.config(menu=self.mb)
-        
+  
         self.fm = Menu(self.mb, tearoff=0)
         self.mb.add_cascade(label="File", menu=self.fm)
         self.fm.add_command(label="Open", command=self.fopen)
@@ -273,8 +304,10 @@ class Owner:
         
         self.root.config(menu=self.mb)
         self.root.mainloop()
-
+#-----------------------------------------------------------------------------------------------
+#Record method the recording the hired tools 
     def Records(self):
+        # for deafult geometry, background, title and the window
         self.root.destroy()
         self.root=Tk()#create a blank window
         self.root.geometry('1080x675+0+0')
@@ -285,26 +318,35 @@ class Owner:
         self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
         self.Back=ttk.Button(self.root,text="BACK",command= self.c)
         self.Back.place(x=0,y=0)
+        #----------------------------------------------------------------------------------
+        #variable decleared
         self.last_info = StringVar()
         self.full_info = StringVar()
         self.full_info = self.hRecord().readFull()
         self.last_info = self.hRecord().read()
+        #---------------------------------------------------------------------------------
+        #last Hired
         Label(self.root, text="Last Hired", font=('Courier',15)).pack(pady=(200,0))
         Label(self.root,text=self.last_info, font=('Courier',12)).pack(pady=(10,0))
+        #-----------------------------------------------------------------------------------
+        #for full hired records
         Label(self.root, text="Full Hired record", font=('Courier',15)).pack(pady=(20,0))
         Label(self.root,text=self.full_info, font=('Courier',12)).pack(pady=(10,0))
-
+        #-------------------------------------------------------------------------------------
         
 
         
         self.root.config(menu=self.mb)
         self.root.mainloop()
 
-        
+     #destroy root and redirect to Discussion
     def c(self):
         self.root.destroy()
         Decission()
+    #---------------------------------------------------------------
+    #for terms and condition of the insurence
     def insu(self):
+        # for deafult geometry, background, title and the window
         self.root.destroy()
         self.root=Tk()#create a blank window
         self.root.geometry('1080x675+0+0')
@@ -317,8 +359,10 @@ class Owner:
         self.Back.place(x=0,y=0)
         self.we=Label(self.root,text="Insurance simply represent the damages of the tool \n if the tool is damage and it has no physiical damage then you can claim\nfor the insurance after applying for the insurance company will investigate and pays the \n revinue if the terms and conditions are satisfied as per the rule of the company",font=("Currior",18))
         self.we.pack(pady=(300,0))
-
+#-------------------------------------------------------------------------------------------------------------
+#for information about the shared power
     def us(self):
+        # for deafult geometry, background, title and the window
         self.root.destroy()
         self.root=Tk()#create a blank window
         self.root.geometry('1080x675+0+0')
@@ -331,10 +375,12 @@ class Owner:
         self.Back.place(x=0,y=0)
         self.label=Label(self.root,text="Shared Power is one of the leading software company \n in the world it gives platform for the people\n to lend and use their unused appliences or tool\n it is one of the best site to lend and \n hire tools for certain period of time",font=('Courier',20))
         self.label.pack(pady=(200,0))
+        #for redirecting to Owner and destroy data
     def back(self):
         self.root.destroy()
         Owner()
-        
+   #----------------------------------------------------------
+#for opening file
 
     def fopen(self):
         global txt
@@ -364,24 +410,29 @@ class Owner:
                 self.txt.insert(INSERT, self.fp.read())
                 self.txt.pack()
                 self.fp.close()
-
+                
         self.title= self.fl.split('/')[-1]
         self.root.title( self.title)
-
+#------------------------------------------------------------------------------------------
+#for saving file
     def fsave(self):
         
         self.fp = open(self.fl, 'w')
         self.v = self.txt.get("1.0", END)
         self.fp.writelines(v)
         self.fp.close()
-
+#----------------------------------------------
+#for the save as file
     def fsaveAs(self):
         self.file = filedialog.asksaveasfile(mode='w', filetypes=[("Text files","*.txt")])
         if self.file != None:
             self.data = self.txt.get('1.0', END + '-1c')
             self.file.write(data)
             self.file.close()
+     #------------------------------------------------
+    #for the information of drills
     def drill(self):
+        # for deafult geometry, background, title and the window
         self.root.destroy()
         self.root=Tk()#create a blank window
         self.root.geometry('1080x675+0+0')
@@ -391,8 +442,10 @@ class Owner:
         self.file = PhotoImage(file="drills.png",width = 1080, height=675)
         self.background_label = Label(self.root,image=self.file)
         self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        #--------------------------------------------------------------------------------------
         self.Back=ttk.Button(self.root,text="BACK",command= self.a)
-        self.Back.place(x=0,y=0)
+        self.Back.place(x=0,y=0)                #for get back to system
+        #information of drill
         self.label1=Label(self.root,text='This is a drill machine which is used to \n make a hole in a concrete and wood',font=('Courier',20))
         self.label1.pack(pady=(300,0),padx=(50,0))
         self.label2=Label(self.root,text="You are the Owner",font=('Courier',20))
@@ -415,7 +468,10 @@ class Owner:
 ##        self.free.pack(side=RIGHT,padx=(0,100),ipadx=15,ipady=5)
         self.Can.pack()
         self.root.mainloop()
+        #------------------------------------------------------------------------
+        
     def screw(self):
+        # for deafult geometry, background, title and the window
         self.root.destroy()
         self.root=Tk()#create a blank window
         self.root.geometry('1080x675+0+0')
@@ -425,8 +481,12 @@ class Owner:
         self.file = PhotoImage(file="screwdrivers.png",width = 1080, height=675)
         self.background_label = Label(self.root,image=self.file)
         self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        #----------------------------------------------------------------------------
+        #for back button
         self.Back=ttk.Button(self.root,text="BACK",command= self.a)
         self.Back.place(x=0,y=0)
+        #---------------------------------------------------------------
+        #information about the the screwdriver
         self.label1=Label(self.root,text='This is a Screwdriver which is used to \n tighten a nail or a knot in a concrete or wood',font=('Courier',20))
         self.label1.pack(pady=(300,0),padx=(50,0))
         self.label2=Label(self.root,text="You are the Owner",font=('Courier',20))
@@ -449,7 +509,9 @@ class Owner:
 ##        self.free.pack(side=RIGHT,padx=(0,100),ipadx=15,ipady=5)
         self.Can.pack()
         self.root.mainloop()
+      #for the information about the wirecutter
     def wirecutter(self):
+        # for deafult geometry, background, title and the window
         self.root.destroy()
         self.root=Tk()#create a blank window
         self.root.geometry('1080x675+0+0')
@@ -459,8 +521,11 @@ class Owner:
         self.file = PhotoImage(file="wire.png",width = 1080, height=675)
         self.background_label = Label(self.root,image=self.file)
         self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        #------------------------------------------------------------------
+        #for back button
         self.Back=ttk.Button(self.root,text="BACK",command= self.a)
         self.Back.place(x=0,y=0)
+        #---------------------------------------------------------------------------
         self.label1=Label(self.root,text='This is a wirecutter which is used to \n cut the wire',font=('Courier',20))
         self.label1.pack(pady=(300,0),padx=(50,0))
         self.label2=Label(self.root,text="You are the Owner",font=('Courier',20))
@@ -483,25 +548,33 @@ class Owner:
 ##        self.free.pack(side=RIGHT,padx=(0,100),ipadx=15,ipady=5)
         self.Can.pack()
         self.root.mainloop()
+     #for destroying window and redirect to Owner
     def a(self):
         self.root.destroy()
         Owner()
+     #----------------------------------------------
+     #for showing information of booking to user
     def answer(self):
         self.u_name = StringVar()
         self.u_name = self.Record().read()
-        messagebox.showinfo("Booking done","Dear {0}, your booking is done for 6 weeks".format(self.u_name))    
+        messagebox.showinfo("Booking done","Dear {0}, your booking is done for 6 weeks".format(self.u_name))
+
     def free(self):
         self.u_name = StringVar()
         self.u_name = self.Record().read()
         messagebox.showinfo("Booking done","Dear {0}, your booking is done for 3 days".format(self.u_name))
+   #---------------------------------------------------------------------------------------------------------------
+#for declearing user class
 class User:
+    #for importing the file and using classes for file handling
     from handler.insurancefile import insurance
     from handler.record import Record
     from handler.hireRecord import hRecord
     
-
+#----------------------------------------------------------------------
     
     def __init__(self):
+        # for deafult geometry, background, title and the window
         self.root=Tk()#create a blank window
         self.root.geometry('1080x675+0+0')
         self.root.resizable(False,False)
@@ -509,12 +582,18 @@ class User:
         self.filename = PhotoImage(file="back.png",width = 1080, height=675)
         self.background_label = Label(self.root, image=self.filename)
         self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        #-------------------------------------------------------------------
+        #for back button
         self.Back=ttk.Button(self.root,text="BACK",command= self.c)
+        #----------------------------------------------------------------------------
         self.Back.place(x=0,y=0)
+        
+        #for menu of the window
         Label(self.root,text="You are the User of the tools",font=('Courier',20)).pack(pady=(200,0))
         self.mb = Menu(self.root)
         self.root.config(menu=self.mb)
-        
+        #-------------------------------------------------------------------
+       #for submenu
         self.fm = Menu(self.mb, tearoff=0)
         self.mb.add_cascade(label="File", menu=self.fm)
         self.fm.add_command(label="Open", command=self.fopen)
@@ -522,29 +601,37 @@ class User:
         self.fm.add_command(label="Save As", command=self.fsaveAs)
         self.fm.add_separator()
         self.fm.add_command(label="Exit", command=self.root.quit)
-
+#------------------------------------------------------------------------
+#for submenu return tools
         self.Return=Menu(self.mb)
         self.mb.add_cascade(label="Return tool",menu=self.Return)
         self.Return.add_command(label='Drill',command=self.Rdrill)
         self.Return.add_command(label='Screw Driver',command=self.Rscrew)
         self.Return.add_command(label='Wire cutter',command=self.Rwirecutter)
         self.root.config(menu=self.mb)
-        
+   #--------------------------------------------------------
+#for submenu of search tool
         self.search=Menu(self.mb)
         self.mb.add_cascade(label="Search tool",menu=self.search)
         self.search.add_command(label='Drill',command=self.drill)
         self.search.add_command(label='Screw Driver',command=self.screw)
         self.search.add_command(label='Wire cutter',command=self.wirecutter)
+ #----------------------------------------------------------
+#for submenu of about us
         self.about=Menu(self.mb,tearoff=0)
         self.mb.add_cascade(label="About",menu=self.about)
         self.about.add_command(label="Insurance",command=self.insu)
         self.about.add_command(label="About Us",command=self.us)
         self.root.config(menu=self.mb)
+   #------------------------------------------
         self.root.mainloop()
+    #for destroy window and redirect information
     def c(self):
         self.root.destroy()
         Decission()
+    #for the terms and policy of the insurance
     def insu(self):
+        # for deafult geometry, background, title and the window
         self.root.destroy()
         self.root=Tk()#create a blank window
         self.root.geometry('1080x675+0+0')
@@ -557,8 +644,10 @@ class User:
         self.Back.place(x=0,y=0)
         self.we=Label(self.root,text="Insurance simply represent the damages of the tool \n if the tool is damage and it has no physiical damage then you can claim\nfor the insurance after applying for the insurance company will investigate and pays the \n revinue if the terms and conditions are satisfied as per the rule of the company",font=("Currior",18))
         self.we.pack(pady=(300,0))
-
+#------------------------------------------------------------------------------------
+#for the inormation about the company
     def us(self):
+        # for deafult geometry, background, title and the window
         self.root.destroy()
         self.root=Tk()#create a blank window
         self.root.geometry('1080x675+0+0')
@@ -571,11 +660,13 @@ class User:
         self.Back.place(x=0,y=0)
         self.label=Label(self.root,text="Shared Power is one of the leading software company \n in the world it gives platform for the people\n to lend and use their unused appliences or tool\n it is one of the best site to lend and \n hire tools for certain period of time",font=('Courier',20))
         self.label.pack(pady=(200,0))
+        #-------------------------------------------------------------------------
+        #for back button
     def back(self):
         self.root.destroy()
         Owner()
-        
-
+  #------------------------------------------------------
+#for opening file
     def fopen(self):
         global txt
         global fl
@@ -607,24 +698,27 @@ class User:
 
         self.title= self.fl.split('/')[-1]
         self.root.title( self.title)
-
+#for saving file 
     def fsave(self):
         
         self.fp = open(self.fl, 'w')
         self.v = self.txt.get("1.0", END)
         self.fp.writelines(v)
         self.fp.close()
-
+#------------------------------------------
+#for save as file
     def fsaveAs(self):
         self.file = filedialog.asksaveasfile(mode='w', filetypes=[("Text files","*.txt")])
         if self.file != None:
             self.data = self.txt.get('1.0', END + '-1c')
             self.file.write(data)
             self.file.close()
+  #---------------------------------------------------------
+#for showing information of drills
     def drill(self):
-        
+        # for deafult geometry, background, title and the window
         self.root.destroy()
-        self.root=Tk()#create a blank window
+        self.root=Tk()#create a blank window 
         self.root.geometry('1080x675+0+0')
         self.root.title('Drill')
         self.root.resizable(False,False)
