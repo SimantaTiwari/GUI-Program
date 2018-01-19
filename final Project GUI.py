@@ -457,10 +457,6 @@ class Owner:
         self.label7.place(x=870,y=500)
         self.label3=Label(self.root,text="Your items has been succesfully posted to be hired",font=('Courier',20))
         self.label3.pack(pady=(100,0))
-##        self.paid=ttk.Button(self.root,text="Paid Booking",command=self.answer)
-##        self.paid.pack(side=LEFT,padx=(100,0),ipadx=15,ipady=5)
-##        self.free=ttk.Button(self.root,text="Free Booking,",command=self.free)
-##        self.free.pack(side=RIGHT,padx=(0,100),ipadx=15,ipady=5)
         self.Can.pack()
         self.root.mainloop()
         #------------------------------------------------------------------------
@@ -498,10 +494,6 @@ class Owner:
         self.label7.place(x=870,y=500)
         self.label3=Label(self.root,text="Your items has been succesfully posted to be hired",font=('Courier',20))
         self.label3.pack(pady=(100,0))
-##        self.paid=ttk.Button(self.root,text="Paid Booking",command=self.answer)
-##        self.paid.pack(side=LEFT,padx=(100,0),ipadx=15,ipady=5)
-##        self.free=ttk.Button(self.root,text="Free Booking",command=self.free)
-##        self.free.pack(side=RIGHT,padx=(0,100),ipadx=15,ipady=5)
         self.Can.pack()
         self.root.mainloop()
       #for the information about the wirecutter
@@ -537,10 +529,6 @@ class Owner:
         self.label7.place(x=870,y=500)
         self.label3=Label(self.root,text="Your items has been succesfully posted to be hired",font=('Courier',20))
         self.label3.pack(pady=(100,0))
-##        self.paid=ttk.Button(self.root,text="Paid Booking",command=self.answer)
-##        self.paid.pack(side=LEFT,padx=(100,0),ipadx=15,ipady=5)
-##        self.free=ttk.Button(self.root,text="Free Booking",command=self.free)
-##        self.free.pack(side=RIGHT,padx=(0,100),ipadx=15,ipady=5)
         self.Can.pack()
         self.root.mainloop()
      #for destroying window and redirect to Owner
